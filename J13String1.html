@@ -42,7 +42,7 @@
         /* 문자열은 별도의 변환없이 배열처럼 인덱스로 접근할 수 있다. */
         console.error("문자열을 배열처럼 사용하기");
         for(var i=0; i<str2.length; i++){
-            console.log("str[" + i + "] = " + str2[i] + "<br>");
+            console.log("str[" + i + "] = " + str2[i]);
         }
     </script>
 
@@ -68,7 +68,7 @@
         function isNumber2(param) {
             for(let i=0; i<param.length; i++) {
                 if(!(param[i].charCodeAt(0)>=48 &&
-                param[i].charCodeAt(0)<=57)) {
+                    param[i].charCodeAt(0)<=57)) {
                     return false;
                 }
             }
