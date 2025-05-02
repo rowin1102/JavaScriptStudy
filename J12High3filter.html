@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* */
+        function filterTest1() {
+            console.error("filterTest1() called.. 조건에 맞는 엘리먼트만 추출");
+            var oldArray = [1, 2, 3, 4, 5];
+            var newArray = oldArray.filter(function(currenVal) {
+                console.log("현재원소", currenVal);
+                /* map과 동일하게 원소의 갯수만큼 콜백함수를 반복호출한다.
+                    단, 요소 중 3이하인 것만 반환하여 새로운 배열을 생성한다. */
+                return currenVal <= 3;
+            });
+            console.log(newArray);
+        }
+
+        function filterTest2() {
+            console.error('filterTest2() called..JSON객체형 배열 사용 및 검색');
+            // 객체형 배열 생성
+            var oldJSONArray = [
+                {name : "혜빈", salary : 100000},
+                {name : "제인", salary : 200000},
+                {name : "나윤", salary : 300000},
+                {name : "주이", salary : 400000},
+                {name : "아인", salary : 500000},
+                {name : "낸시", salary : 600000}
+            ];
+            /* 급여가 30만 이상인 객체만 반환하여 새로운 배열을 생성한다.
+                여기서 thisArgs는 사용하지 않는다. 이 경우 명시적으로 undefined을 
+                기술하기도 한다. (보통은 생략하는게 기본) */
+            var newJSONArray = oldJSONArray.filter(function(currenVal) {
+                return currenVal.salary >= 300000;
+            }, undefined);
+            console.log(newJSONArray);
+        }
+
+        function filterTest3() {
+            console.error("filterTest3() called..thisArgs 매개변수 사용하기");
+            var oldArray = [1, 2, 3, 4, 5, 50, 100];
+            // 콜백함수 내부에서 사용할 인수
+            var thisArgs = {min:1, max:10};
+            // 콜백함수 정의
+            function getMinMax(value) {
+                return value>=this.min && value<=this.max;
+            }
+            // filter함수 호출
+            var newArray = oldArray.filter(getMinMax, thisArgs);
+            // 1~10사이의 값을 반환해서 새로운 배열 생성
+            console.log('thisArgs사용결과', newArray);
+        }
+    </script>
+</head>
+<body>
+    <h2>고차함수 - filter()</h2>
+    <div>
+        <input type="button" value="filter1" onclick="filterTest1();">
+        <input type="button" value="filter2" onclick="filterTest2();">
+        <input type="button" value="filter3" onclick="filterTest3();">
+    </div>
+</body>
+</html>
