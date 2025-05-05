@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>document.write()로 표 만들기</h2>
+    <hr>
+    <script>
+        var pow = "<table border='1'> <tr> <td>n</td>";
+        for(var i=0; i<=9; i++) {
+            pow += "<td>" + i + "</td>";
+        }
+        pow += "</tr><tr><td>n<sup>2</sup></td>";
+        for(var i=0; i<=9; i++) {
+            pow += "<td>" + i*i + "</td>";
+        }
+        document.write(pow);
+    </script>
+</body>
+</html>

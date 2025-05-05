@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>숫자의 첫째자리와 마지막자리가 같은지 비교</h2>
+    <hr>
+    <script>
+        let num = parseInt(prompt("숫자를 입력하세요", ""));
+        var firstNum = num;
+        let lastNum = num % 10;
+        while(true) {
+            firstNum = Math.floor(firstNum/10);
+            if(firstNum < 10) {
+                break;
+            }
+        } 
+        if(firstNum === lastNum) {
+            document.write(num + " => 처음과 끝이 같음");
+        } else {
+            document.write(num + " => 처음과 끝이 다름");
+        }
+    </script>
+</body>
+</html>
