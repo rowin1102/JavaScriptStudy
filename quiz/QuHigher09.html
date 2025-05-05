@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const products = [
+            { name: 'apple', price: 1000 },
+            { name: 'banana', price: 800 },
+            { name: 'notebook', price: 20000 }
+        ];
+        let sum = products.reduce((pVal, cVal) => {
+            return pVal + cVal.price;
+        }, 0);
+        console.log(sum);
+    </script>
+</body>
+</html>

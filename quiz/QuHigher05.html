@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const words = ['hello', 'world', 'javascript', 'typescript'];
+        let newWords = words.map((cVal) => {
+            let first = cVal.charAt(0).toUpperCase();
+            let newArray = first;
+            for(let i=1; i<cVal.length; i++) {
+                newArray += cVal[i];
+            }
+            return newArray;
+        });
+        console.log(newWords);
+    </script>
+</body>
+</html>
