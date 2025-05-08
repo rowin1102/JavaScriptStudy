@@ -12,7 +12,7 @@
                 - 창의 이름이 동일하면 하나의 창에 여러 경로의 파일을 추가할 수 있다.0 */
         function findZipcode() {
             // 창의 이름인 'Zip'을 지움녀 버튼을 누를때마다 새로운 팝업창이 띄워진다.
-            window.open("../pages/zipcode.html", "Zip",
+            window.open("./pages/zipcode.html", "Zip",
                 "width=400, height=400, left=500, top=100, scrollbars=yes, " +
                 "location=no, toolbar=no, menubar=no,  resizable=no");
             /* location, toolbar, menubar, resizable 속성들은 익스플러러에서만
@@ -24,7 +24,7 @@
 
         function popFirst() {
             // 팝업창을 열고, 참조값을 전역변수에 저장한다. 이 값을 통해 팝업창을 제어할 수 있다.
-            winObj1 = open("../pages/popup01.html", "pop1", +
+            winObj1 = open("./pages/popup01.html", "pop1", +
                 "width=300, height=300, left=0, top=0");
         }
 
