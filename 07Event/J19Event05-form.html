@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>폼 이벤트</h2>
+
+    <h3>select 태그에서 option 선택</h3>
+    <script>
+        let myChange = obj => {
+            let txt = '';
+            txt += '<br>option갯수:' + obj.options.length;
+            txt += '<br>선택항목의 text:' + obj[obj.selectedIndex].text;
+            txt += '<br>선택항목의 value' + obj.value;
+            document.getElementById("selectItem").innerHTML = txt;
+        }
+    </script>
+    <select id="fruit" onchange="myChange(this);" size="5">
+        <option value="apple">사과</option>
+        <option value="orange">오렌지</option>
+        <option value="mango" selected>망고</option>
+        <option value="banana">바나나</option>
+        <option value="guaba">구아바</option>
+    </select>
+    <div id="selectItem"></div>
+
+    <h3>텍스트 선택</h3>
+    <script>
+        let mySelect = () => {
+            alert("텍스트를 선택하셨습니다.");
+        }
+    </script>
+
+    입력상자의 텍스트를 마우스로 선택해보세요. <br>
+    <input type="text" size="30" value="독도는 우리땅" onselect="mySelect();">
+
+    <h3>텍스트 입력</h3>
+    <script>
+        let myInput = () => {
+            var txt = document.getElementById("myInput").value;
+            document.getElementById("inputText"),innerHTML = "작성내용:" + txt;
+        }
+    </script>
+
+    텍스트를 입력하는 순간 이벤트가 발생합니다. <br>
+    <input type="text" id="myInput" oninput="myInput();">
+
+    <h3>submit / reset 이벤트</h3>
+    <script>
+        let fnSubmit = () => {
+            var txtObj = document.fnSubmit.txt;
+            // var txtObj = document.getElementById("idTxt");
+            if(txtObj.value == "") {
+                alert("텍스트를 입력하세요");
+                txtObj.focus();
+                return false;
+            }
+            // return false;
+        }
+
+        let fnReset = () => {
+            alert("reset 이벤트가 발생되어 초기상태가 됩니다.");
+        }
+    </script>
+
+    <form action="http://tjoeun.co.kr" name="subForm"
+        onsubmit="return fnSubmit();" onreset="fnReset();">
+        텍스트를 미입력 혹은 입력한 상태로 버튼을 눌러보세요 <br>
+        <input type="text" id="idTxt" name="txt" value="">
+        <br>
+        <input type="reset" value="리셋">
+        <input type="submit" value="서브밋(전송)">
+    </form>
+</body>
+</html>
