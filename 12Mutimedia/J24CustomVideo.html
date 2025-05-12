@@ -52,12 +52,17 @@
             video.play();
         }
 
+        /* timeupdate 이벤트를 통해 반환되는 재생시간은 123.xxx와 같은 밀리세컨즈 단위이므로,
+            가독성을 위해 00:00:00 형식으로 변환이 필요하다. */
         var timeShow = seconds => {
+            // 시간을 반올림
             seconds = Math.round(seconds);
             var h = parseInt(seconds / 3600);
             var m = parseInt((seconds % 3600) / 60);
             var s = seconds % 60;
 
+            /* 시간이 10미만일때는 0:0:0과 같이 출력될 수 있으므로 0을 추가하여 두자리의
+                포맷을 만들어준다. */
             var hour = (h < 10) ? '0'+h : h;
             var min = (m < 10) ? '0'+m : m;
             var sec = (s < 10) ? '0'+s : s;
@@ -65,14 +70,16 @@
             return hour + ":" + min + ":" + sec;
         }       
 
-        /* timeupdate 이벤트를 통해 반환되는 재생시간은 123.xxx와 같은 밀리세컨즈 단위이므로,
-            가독성을 위해 00:00:00 형식으로 변환이 필요하다. */
+        // 볼륨 조절 : 0~1사이로 조절 가능
         var setVolum = value => {
+            // 0이면 음소거
             if(value == 0) {
                 video.muted = true;
             } else {
+                // 0이 아니면 음소거 해제
                 video.muted = false;
                 var nowVolume = video.volume;
+                // 0~1의 범위를 벗어나면 강제로 맞춤 설정한다.
                 if(value == 1) {
                     nowVolume += 0.1;
                     video.volume = (nowVolume>1) ? 1 : nowVolume;
@@ -83,6 +90,7 @@
             }
         }
 
+        // 재생 속도 조절
         var setPlaybackRate = value => {
             if(value == 1) {
                 video.playbackRate += 0.25;
@@ -91,6 +99,7 @@
             }
         }
         
+        // 건너뛰기 설정(10초씩 앞/뒤로 이동)
         var setTime = value => {
             if(value == 1) {
                 video.currentTime += 10;
