@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Async / Await</h2>
+    <!-- aync/await는 Promise를 더욱 쉽고 효과적으로 다루기 위한 문법적설탕(syntactic sugar)이다.
+        복잡한 then()결과 catch()로 이어지는 문법대신, 마치 동기 코드를 작성하듯 비동기 작업을
+        순서대로 기술할 수 있도록 해준다. -->
+    <script>
+        const requestLogin = userid => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(`${userid} 로그인 완료`);
+                    resolve(userid);
+                }, 1000);
+            });
+        }
+
+        const getUserInfo = userid => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(`${userid}의 사용자 정보 조회 완료`);
+                    resolve({userid, name: '성유겸'});
+                }, 1000);
+            });
+        }
+
+        const welcomeHome = responseInfo => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(`아이디:${responseInfo.userid}`);
+                    console.log(`${responseInfo.name}님, 환영합니다!`);
+                    resolve();
+                }, 1000);
+            });
+        }
+
+        const processMain = async () => {
+            try {
+                const my_id = await requestLogin('gyeoms');
+                const my_info = await getUserInfo(my_id);
+                await welcomeHome(my_info);
+                console.log('작업 완료');   
+            } 
+            catch(error) {
+                console.error('에러 발생:', error);
+            }
+        }
+    </script>
+    <div>
+        <button type="button" onclick="processMain();">로그인하기</button>
+    </div>
+</body>
+</html>
