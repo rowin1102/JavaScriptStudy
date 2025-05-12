@@ -57,6 +57,10 @@
                 return false;
             }
 
+            /*
+            checkbox는 항목 중 2개 이상을 선택할 수 있으므로, 카운트를 위해
+            number타입의 변수를 생성하는 것이 일반적이다.
+            */
             var checkCount = 0;
             for(var i=0; i<frm.inter.length; i++) {
                 if(frm.inter[i].checked == true) {
@@ -64,35 +68,69 @@
                 }
             }
 
+            //관심사항이 2개 미만으로 체크되었다면 경고창을 띄운다.
             if(checkCount < 2) {
                 alert("관심사항을 2개이상 선택해주세요");
                 frm.inter[0].focus();
                 return false;
             }
 
+            /*
+            select태그의 경우 
+                모든 option태그가 value를 가지고 있다면
+                    ==> selectedIndex를 사용해서 체크한다. 즉, 몇번째 항목이
+                        선택되었는지를 통해 입력여부를 판단한다.
+                value가 없는 항목이 있을때
+                    ==> input과 동일하게 value속성이 빈값인지 확인한다.
+            */
+
+            // 0번 항목을 선택했을때 경고창
             if(frm.grade1.selectedIndex == 0) {
                 alert("학력을 선택하세요");
                 frm.grade1.focus();
                 return false;
             }
             
+            //값이 없을때 경고창
             if(frm.grade2.value == "") {
                 alert("학력을 선택하세요");
                 frm.grade2.focus();
                 return false;
             }
             
+            /*
+            file 타입인 경우에는 text타입과 동일하게 체크한다. */
             if(frm.userfile.value == "") {
                 alert("첨부파일을 선택하세요");
                 frm.userfile.focus();
                 return false;
             }
          
+            /*
+            textarea는 자체적인 value 속성은 없으나, JS에서 DOM을 통해 검증할때는
+            value속성을 통해 접근해야 한다. 즉, text타입과 동일하게 체크하면 된다.*/
             if(frm.intro.value == "") {
                 alert("자기소개을 선택하세요");
                 frm.intro.focus();
                 return false;
             }
+
+            //매개변수로 form태그의 DOM요소를 전달받는다.
+            function idCheck(fn) {
+                //아이디가 입력되었는지 확인
+                if(fn.id.value=="") {
+                    alert("아이디를 입력후 중복확인을 누르삼");
+                    fn.id.focus();
+                } else {
+                    //입력된 아이디를 수정하지 못하도록 readonly속성을 활성화한다.
+                    fn.id.readOnly = true;
+                    /*
+                    아이디 중복확인 창을 띄운다. 이때 입력된 아이디를 팝업창으로
+                    전달하기 위해 쿼리스트링으로 추가해준다. */
+                    window.open("./pages/id_overapping.html?id="+fn.id.value,
+                        "idover", "width=300, height=200");
+                }
+            } 
         }
     </script>
 </head>
